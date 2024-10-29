@@ -12,7 +12,7 @@ create_cifs_disk_image() {
 	mkdir -p ${CIFS_DISK_IMAGE_PATH}
 	dd if=/dev/zero of="${CIFS_DISK_IMAGE_PATH}/data.img" count="${CIFS_DISK_IMAGE_SIZE_MB}" bs=1M
 	mkfs.ext4 -F "${CIFS_DISK_IMAGE_PATH}/data.img"
-	mount "${CIFS_DISK_IMAGE_PATH}/data.img" ${EXPORT_PATH}
+	mount -t ext4 -o loop "${CIFS_DISK_IMAGE_PATH}/data.img" ${EXPORT_PATH}
 	chmod 777 "${EXPORT_PATH}"
 }
 
